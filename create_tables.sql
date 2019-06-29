@@ -1,47 +1,41 @@
-﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/JHw8I4
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
+departments
+-
+dept_no VARCHAR FK - dept_emp.dept_no
+dept_name VARCHAR
 
+dept_emp
+-
+emp_no INTEGER
+dept_no VARCHAR FK - dept_manager.dept_no
+from_date DATE
+to_date DATE
 
-CREATE TABLE "departments" (
-    "dept_no" VARCHAR   NOT NULL,
-    "dept_name" VARCHAR   NOT NULL
-);
+dept_manager
+-
+dept_no VARCHAR
+emp_no INTEGER FK >- employees.emp_no
+from_date DATE
+to_date DATE
 
-CREATE TABLE "dept_emp" (
-    "emp_no" INTEGER   NOT NULL,
-    "dept_no" VARCHAR   NOT NULL,
-    "from_date" DATE   NOT NULL,
-    "to_date" DATE   NOT NULL
-);
+employees
+-
+emp_no INTEGER FK - titles.emp_no
+birth_date DATE
+first_name VARCHAR
+last_name VARCHAR
+gender VARCHAR
+hire_date DATE
 
-CREATE TABLE "dept_manager" (
-    "dept_no" VARCHAR   NOT NULL,
-    "emp_no" INTEGER   NOT NULL,
-    "from_date" DATE   NOT NULL,
-    "to_date" DATE   NOT NULL
-);
+salaries
+-
+emp_no INTEGER
+salary INTEGER
+from_date DATE
+to_date DATE
 
-CREATE TABLE "employees" (
-    "emp_no" INTEGER   NOT NULL,
-    "birth_date" DATE   NOT NULL,
-    "first_name" VARCHAR   NOT NULL,
-    "last_name" VARCHAR   NOT NULL,
-    "gender" VARCHAR   NOT NULL,
-    "hire_date" DATE   NOT NULL
-);
-
-CREATE TABLE "salaries" (
-    "emp_no" INTEGER   NOT NULL,
-    "salary" INTEGER   NOT NULL,
-    "from_date" DATE   NOT NULL,
-    "to_date" DATE   NOT NULL
-);
-
-CREATE TABLE "titles" (
-    "emp_no" INTEGER   NOT NULL,
-    "title" VARCHAR   NOT NULL,
-    "from_date" DATE   NOT NULL,
-    "to_date" DATE   NOT NULL
-);
-
+titles
+-
+emp_no INTEGER FK - salaries.emp_no
+title VARCHAR
+from_date DATE
+to_date DATE
